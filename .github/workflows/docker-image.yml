@@ -33,6 +33,7 @@ jobs:
         context: .
         file: ./Dockerfile
         platforms: linux/amd64
+        push: true
         tags: |
           ${{ env.USER }}/${{ env.REPO }}:latest
           ${{ env.USER }}/${{ env.REPO }}:${{ env.TAG_DATE }}
