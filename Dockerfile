@@ -35,7 +35,7 @@ RUN PORTAGE_CONFIGROOT="$CROSSROOT" eselect profile set default/linux/arm64/23.0
 RUN emerge -vq \
 	dev-build/cmake \
 	dev-libs/glib \
-	dev-util/glib-utils \
+	dev-util/glib-utils
 
 RUN emerge-aarch64-unknown-linux-gnu -vq @system
 RUN emerge-aarch64-unknown-linux-gnu -vq \
