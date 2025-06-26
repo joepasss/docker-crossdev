@@ -22,7 +22,7 @@ fi
 mkdir build
 cd build || exit
 
-meson setup --cross-file /sources/cross.txt .. \
+meson setup --cross-file /sources/cross-glib.txt .. \
   --prefix=/usr/aarch64-unknown-linux-gnu/usr \
   --buildtype=release \
   --libdir=lib64 \
