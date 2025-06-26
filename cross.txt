@@ -4,13 +4,12 @@ cpp = 'aarch64-unknown-linux-gnu-g++'
 ar = 'aarch64-unknown-linux-gnu-ar'
 strip = 'aarch64-unknown-linux-gnu-strip'
 pkgconfig = 'aarch64-unknown-linux-gnu-pkg-config'
-exe_wrapper = true
 
 [properties]
 sys_root = '/usr/aarch64-unknown-linux-gnu'
 c_args = ['--sysroot=/usr/aarch64-unknown-linux-gnu']
 cpp_args = ['--sysroot=/usr/aarch64-unknown-linux-gnu']
-needs_exe_wrapper = true
+needs_exe_wrapper = false
 libdir = 'lib64'
 
 [host_machine]

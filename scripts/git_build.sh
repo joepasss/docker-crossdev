@@ -25,6 +25,7 @@ cd build || exit
 meson setup --cross-file /sources/cross.txt .. \
   --prefix=/usr/aarch64-unknown-linux-gnu/usr \
   --buildtype=release \
+  -D gitweb=disabled \
   -D tests=false
 
 ninja
