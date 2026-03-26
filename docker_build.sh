@@ -2,17 +2,55 @@
 
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
-IMAGE_NAME="joepasss_bin:local"
-CONTAINER_NAME="joepasss_bin"
+IMAGE_NAME="crossdev:local"
+CONTAINER_NAME="crossdev"
+DATE=$(date '+%Y%m%d')
 
-docker build \
-  -t "$IMAGE_NAME" "$SCRIPT_DIR"
+function help() {
+  echo "help	: show this message"
+  echo "test	: build & run"
+  echo "deploy: build & deploy"
+}
 
-if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
-  docker rm -f "$CONTAINER_NAME" >/dev/null
-fi
+function build() {
+  docker build \
+    -t "$IMAGE_NAME" "$SCRIPT_DIR"
 
-docker run \
-  -it \
-  --name "$CONTAINER_NAME" \
-  "$IMAGE_NAME"
+  if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
+    docker rm -f "$CONTAINER_NAME" >/dev/null
+  fi
+}
+
+function test() {
+  docker run \
+    -it \
+    --privileged \
+    --name "$CONTAINER_NAME" \
+    "$IMAGE_NAME"
+}
+
+function deploy() {
+  docker tag "$IMAGE_NAME" "joepasss/$CONTAINER_NAME:$DATE"
+  docker push "joepasss/$CONTAINER_NAME:$DATE"
+}
+
+case $1 in
+  help)
+    help
+    ;;
+
+  test)
+    build
+    test
+    ;;
+
+  deploy)
+    build
+    deploy
+    ;;
+
+  *)
+    help
+    ;;
+
+esac
