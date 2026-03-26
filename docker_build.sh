@@ -32,6 +32,9 @@ function test() {
 function deploy() {
   docker tag "$IMAGE_NAME" "joepasss/$CONTAINER_NAME:$DATE"
   docker push "joepasss/$CONTAINER_NAME:$DATE"
+
+  docker tag "$IMAGE_NAME" "joepasss/$CONTAINER_NAME:latest"
+  docker push "joepasss/$CONTAINER_NAME:latest"
 }
 
 case $1 in
